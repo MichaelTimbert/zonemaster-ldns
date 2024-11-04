@@ -103,6 +103,22 @@ my $opt_assets         = {
     }
 };
 
+# Inject options from $makeMakerFlags environment variable
+# to ARGV. Options in $makeMakerFlags must be formated
+# like <opt>=<val> and separated by space
+my $nb_args= $#ARGV + 1;
+my $i = $nb_args;
+my @inject_opts = split(/\s+/, $ENV{makeMakerFlags});
+for my $opt (@inject_opts){
+	$ARGV[$i] = $opt;
+	$i=$i+1;
+}
+#for my $opt (@split(/\s+/,$ENV{makeMakerFlags}))
+#{
+	#$ARGV[$i++] = $ENV{makeMakerFlags};
+#	$ARGV[$i++] = $opt;
+#}
+
 GetOptions(
     'ed25519!'         => \$opt_ed25519,
     'idn!'             => \$opt_idn,
