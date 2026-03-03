@@ -66,7 +66,7 @@ jobs:
 
       - name: Get short SHA
         id: short_sha
-        run: echo "short_sha=$(echo ${{ github.sha }} | cut -c1-7)" >> $GITHUB_OUTPUT
+        run: echo "short_sha=$(echo ${{ github.event.pull_request.head.sha }} | cut -c1-7)" >> $GITHUB_OUTPUT
      
       - name: Get Zonemaster-LDNS version 
         id: version
